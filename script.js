@@ -2,6 +2,7 @@ const header = document.querySelector(".site-header");
 const menuToggle = document.querySelector(".menu-toggle");
 const nav = document.querySelector(".site-nav");
 const pageMain = document.querySelector(".page-main");
+const backToTop = document.querySelector(".back-to-top");
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 const navLinks = nav ? Array.from(nav.querySelectorAll("a")) : [];
@@ -133,4 +134,20 @@ if (menuToggle && header) {
     const isOpen = header.classList.toggle("is-open");
     menuToggle.setAttribute("aria-expanded", String(isOpen));
   });
+}
+
+if (backToTop) {
+  const toggleBackToTop = () => {
+    backToTop.classList.toggle("is-visible", window.scrollY > 420);
+  };
+
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: reduceMotion ? "auto" : "smooth",
+    });
+  });
+
+  toggleBackToTop();
+  window.addEventListener("scroll", toggleBackToTop, { passive: true });
 }

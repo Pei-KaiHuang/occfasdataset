@@ -354,34 +354,40 @@ td {
 
 .overview-shell .intro-card {
   display: grid;
-  grid-template-columns: minmax(320px, 0.72fr) minmax(0, 1.28fr);
+  grid-template-columns: minmax(480px, 1.1fr) minmax(360px, 0.9fr);
   gap: 28px;
   align-items: stretch;
 }
 
 .metrics-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--gap-item);
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  gap: 12px;
   width: 100%;
+  max-width: 620px;
+  justify-self: end;
 }
 
 .metric-card {
-  --metric-from: #1677ff;
-  --metric-to: #00a6ff;
-  --metric-glow: rgba(22, 119, 255, 0.28);
+  --metric-from: #0665f2;
+  --metric-to: #25b7ff;
+  --metric-glow: rgba(22, 119, 255, 0.24);
   position: relative;
   overflow: hidden;
   display: grid;
+  grid-template-columns: 46px minmax(0, 1fr);
+  grid-template-rows: auto auto auto;
   align-content: center;
-  gap: 8px;
-  min-height: 126px;
-  padding: 22px 24px;
+  align-items: center;
+  column-gap: 14px;
+  row-gap: 4px;
+  min-height: 104px;
+  padding: 16px 18px;
   border: 0;
-  border-radius: 22px;
+  border-radius: 18px;
   background:
-    radial-gradient(circle at 88% 16%, rgba(255, 255, 255, 0.32), transparent 28%),
-    radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.16), transparent 34%),
+    radial-gradient(circle at 88% 16%, rgba(255, 255, 255, 0.18), transparent 28%),
+    radial-gradient(circle at 100% 100%, rgba(255, 255, 255, 0.12), transparent 34%),
     linear-gradient(135deg, var(--metric-from) 0%, var(--metric-to) 100%);
   box-shadow:
     0 18px 34px var(--metric-glow),
@@ -389,21 +395,21 @@ td {
 }
 
 .metrics-grid .metric-card:nth-child(2) {
-  --metric-from: #00a884;
-  --metric-to: #18d68f;
-  --metric-glow: rgba(0, 168, 132, 0.25);
+  --metric-from: #008d72;
+  --metric-to: #27d493;
+  --metric-glow: rgba(0, 168, 132, 0.22);
 }
 
 .metrics-grid .metric-card:nth-child(3) {
-  --metric-from: #6f55ff;
-  --metric-to: #a855f7;
-  --metric-glow: rgba(124, 85, 255, 0.26);
+  --metric-from: #6041f1;
+  --metric-to: #a85bf4;
+  --metric-glow: rgba(124, 85, 255, 0.22);
 }
 
 .metrics-grid .metric-card:nth-child(4) {
-  --metric-from: #ff8a00;
-  --metric-to: #ff4d4d;
-  --metric-glow: rgba(255, 112, 0, 0.25);
+  --metric-from: #e86100;
+  --metric-to: #ff6758;
+  --metric-glow: rgba(255, 112, 0, 0.22);
 }
 
 .metric-card::before {
@@ -414,37 +420,94 @@ td {
   width: 128px;
   height: 128px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.16);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .metric-card::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(115deg, transparent 0%, transparent 42%, rgba(255, 255, 255, 0.16) 52%, transparent 66%);
+  background:
+    linear-gradient(90deg, rgba(5, 18, 42, 0.28) 0%, rgba(5, 18, 42, 0.14) 42%, transparent 74%),
+    linear-gradient(115deg, transparent 0%, transparent 48%, rgba(255, 255, 255, 0.08) 58%, transparent 70%);
   pointer-events: none;
 }
 
 .metric-card strong,
-.metric-card span {
+.metric-card .metric-label,
+.metric-card small,
+.metric-icon {
   position: relative;
   z-index: 1;
 }
 
 .metric-card strong {
+  grid-column: 2;
   margin: 0;
   color: #fff;
-  font-size: 2.05rem;
+  font-size: 1.68rem;
   line-height: 1;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.16);
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.34);
 }
 
-.metric-card span {
-  color: rgba(255, 255, 255, 0.88);
-  font-size: var(--type-small);
-  font-weight: 800;
-  line-height: 1.35;
-  text-shadow: 0 1px 10px rgba(0, 0, 0, 0.14);
+.metric-card .metric-label {
+  grid-column: 2;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 900;
+  line-height: 1.12;
+  letter-spacing: 0;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.metric-card small {
+  grid-column: 2;
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.82);
+  font-size: 0.68rem;
+  font-weight: 700;
+  line-height: 1.28;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
+}
+
+.metric-icon {
+  grid-column: 1;
+  grid-row: 1 / span 3;
+  align-self: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  color: rgba(255, 255, 255, 0.94);
+  background: rgba(255, 255, 255, 0.18);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.24),
+    0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.metric-icon::before {
+  content: "";
+  position: absolute;
+  inset: 10px;
+  background: currentColor;
+  -webkit-mask: var(--metric-icon-url) center / contain no-repeat;
+  mask: var(--metric-icon-url) center / contain no-repeat;
+  pointer-events: none;
+}
+
+.metric-icon-samples {
+  --metric-icon-url: url("https://cdn.jsdelivr.net/npm/lucide-static@1.8.0/icons/images.svg");
+}
+
+.metric-icon-scenarios {
+  --metric-icon-url: url("https://cdn.jsdelivr.net/npm/lucide-static@1.8.0/icons/grid-2x2.svg");
+}
+
+.metric-icon-protocols {
+  --metric-icon-url: url("https://cdn.jsdelivr.net/npm/lucide-static@1.8.0/icons/list-checks.svg");
+}
+
+.metric-icon-maps {
+  --metric-icon-url: url("https://cdn.jsdelivr.net/npm/lucide-static@1.8.0/icons/layers.svg");
 }
 
 .concept-panel {
@@ -808,6 +871,39 @@ tbody tr:nth-child(even) td,
   line-height: 1.2;
 }
 
+.back-to-top {
+  position: fixed;
+  right: 28px;
+  bottom: 28px;
+  z-index: 900;
+  display: inline-grid;
+  place-items: center;
+  width: 48px;
+  height: 48px;
+  border: 1px solid rgba(8, 102, 255, 0.18);
+  border-radius: 999px;
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, #1484ff 0%, #0866ff 58%, #0050d8 100%);
+  box-shadow: 0 16px 32px rgba(8, 102, 255, 0.24);
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(10px);
+  transition: opacity 160ms ease, transform 160ms ease;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  transform: translateY(-2px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -815,7 +911,8 @@ tbody tr:nth-child(even) td,
 
   .page-main,
   .site-nav::before,
-  .site-nav a {
+  .site-nav a,
+  .back-to-top {
     transition: none;
   }
 }
@@ -839,6 +936,9 @@ tbody tr:nth-child(even) td,
 
   .metrics-grid {
     order: 2;
+    max-width: none;
+    justify-self: stretch;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .figure-image,
@@ -981,9 +1081,12 @@ tbody tr:nth-child(even) td,
   }
 
   .metric-card {
+    grid-template-columns: 40px minmax(0, 1fr);
     min-height: 86px;
     padding: 16px 16px 16px 18px;
     border-radius: 16px;
+    column-gap: 12px;
+    row-gap: 3px;
   }
 
   .metric-card::before {
@@ -997,8 +1100,19 @@ tbody tr:nth-child(even) td,
     font-size: 1.58rem;
   }
 
-  .metric-card span {
-    font-size: 0.84rem;
+  .metric-card .metric-label {
+    font-size: 0.88rem;
+  }
+
+  .metric-card small {
+    margin-top: 3px;
+    font-size: 0.66rem;
+  }
+
+  .metric-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 13px;
   }
 
   .figure-image,
@@ -1097,16 +1211,29 @@ tbody tr:nth-child(even) td,
   }
 
   .metric-card {
+    grid-template-columns: 36px minmax(0, 1fr);
     min-height: 82px;
     padding: 13px 12px;
+    column-gap: 10px;
+    row-gap: 3px;
   }
 
   .metric-card strong {
     font-size: 1.34rem;
   }
 
-  .metric-card span {
-    font-size: 0.78rem;
+  .metric-card .metric-label {
+    font-size: 0.8rem;
+  }
+
+  .metric-card small {
+    display: none;
+  }
+
+  .metric-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
   }
 
   .scenario-legend div {
@@ -1117,22 +1244,22 @@ tbody tr:nth-child(even) td,
 
 @media (max-width: 640px) and (orientation: portrait) {
   :root {
-    --header-space: 94px;
-    --section-pad: 12px;
-    --card-pad: 12px;
-    --gap-page: 12px;
-    --gap-section: 12px;
-    --gap-card: 10px;
-    --gap-item: 10px;
+    --header-space: 88px;
+    --section-pad: 14px;
+    --card-pad: 14px;
+    --gap-page: 16px;
+    --gap-section: 16px;
+    --gap-card: 14px;
+    --gap-item: 12px;
     --section-radius: 18px;
     --card-radius: 16px;
     --item-radius: 14px;
-    --type-h1: 1.84rem;
-    --type-h2: 1.16rem;
-    --type-h3: 0.98rem;
-    --type-body: 0.94rem;
-    --type-small: 0.82rem;
-    --type-lead: 0.95rem;
+    --type-h1: 2.05rem;
+    --type-h2: 1.28rem;
+    --type-h3: 1.05rem;
+    --type-body: 1rem;
+    --type-small: 0.9rem;
+    --type-lead: 1.04rem;
   }
 
   html,
@@ -1143,7 +1270,7 @@ tbody tr:nth-child(even) td,
 
   .site-stage {
     width: 100%;
-    padding: var(--header-space) 6px 10px;
+    padding: var(--header-space) 8px 14px;
   }
 
   .site-header {
@@ -1216,7 +1343,7 @@ tbody tr:nth-child(even) td,
 
   .page-main {
     gap: var(--gap-page);
-    margin-top: 8px;
+    margin-top: 4px;
   }
 
   .section-shell,
@@ -1254,17 +1381,23 @@ tbody tr:nth-child(even) td,
   .side-caption-figure,
   .download-layout {
     grid-template-columns: minmax(0, 1fr);
+    gap: var(--gap-section);
   }
 
   .concept-panel {
-    gap: 12px;
-    padding: 12px;
+    gap: 14px;
+    padding: 14px;
+  }
+
+  .concept-panel .lead {
+    font-size: var(--type-lead);
+    line-height: 1.62;
   }
 
   .concept-item {
     grid-template-columns: 12px minmax(0, 1fr);
-    gap: 10px;
-    padding: 11px 0;
+    gap: 12px;
+    padding: 13px 0;
   }
 
   .concept-dot {
@@ -1274,23 +1407,45 @@ tbody tr:nth-child(even) td,
     box-shadow: 0 0 0 4px rgba(22, 119, 255, 0.12);
   }
 
+  .concept-item strong {
+    font-size: 1rem;
+  }
+
+  .concept-item p {
+    font-size: 0.96rem;
+    line-height: 1.58;
+  }
+
   .metrics-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
+    gap: 12px;
   }
 
   .metric-card {
-    min-height: 82px;
-    padding: 13px 12px;
+    grid-template-columns: 36px minmax(0, 1fr);
+    min-height: 96px;
+    padding: 16px 14px;
+    column-gap: 10px;
+    row-gap: 3px;
   }
 
   .metric-card strong {
-    font-size: 1.32rem;
+    font-size: 1.52rem;
   }
 
-  .metric-card span {
-    font-size: 0.78rem;
-    line-height: 1.25;
+  .metric-card .metric-label {
+    font-size: 0.9rem;
+    line-height: 1.32;
+  }
+
+  .metric-card small {
+    display: none;
+  }
+
+  .metric-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 12px;
   }
 
   .figure-image,
@@ -1301,23 +1456,23 @@ tbody tr:nth-child(even) td,
   }
 
   .figure-caption-text {
-    padding: 38px 14px 14px;
+    padding: 40px 16px 16px;
   }
 
   .figure-caption-text::before,
   .scenario-legend::before {
-    top: 13px;
-    left: 14px;
+    top: 14px;
+    left: 16px;
   }
 
   .scenario-legend {
-    padding: 38px 14px 12px;
+    padding: 40px 16px 14px;
   }
 
   .scenario-legend div {
     grid-template-columns: 1fr;
     gap: 2px;
-    padding: 10px 12px;
+    padding: 12px;
   }
 
   .table-wrap {
@@ -1331,20 +1486,20 @@ tbody tr:nth-child(even) td,
   th,
   td {
     padding: 8px 7px;
-    font-size: 0.8rem;
+    font-size: 0.86rem;
   }
 
   .download-layout,
   .download-panel-card,
   .download-materials,
   .step-list {
-    gap: 10px;
+    gap: 12px;
   }
 
   .download-detail,
   .steps-card,
   .download-panel-card {
-    padding: 12px;
+    padding: 14px;
   }
 
   .primary-action,
@@ -1356,8 +1511,8 @@ tbody tr:nth-child(even) td,
 
   .step-row {
     grid-template-columns: 38px minmax(0, 1fr);
-    gap: 10px;
-    padding: 10px 0;
+    gap: 12px;
+    padding: 12px 0;
   }
 
   .step-row span {
@@ -1365,5 +1520,25 @@ tbody tr:nth-child(even) td,
     height: 38px;
     border-radius: 12px;
     font-size: 0.8rem;
+  }
+
+  .back-to-top {
+    right: 16px;
+    bottom: 16px;
+    width: 44px;
+    height: 44px;
+    font-size: 1.1rem;
+  }
+
+  .step-row h3 {
+    font-size: 1rem;
+  }
+
+  .step-row p,
+  .download-detail p,
+  .citation-block,
+  .figure-caption-text,
+  .scenario-legend dd {
+    font-size: 0.94rem;
   }
 }
