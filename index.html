@@ -1,0 +1,647 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>OCC-FAS Dataset</title>
+    <meta name="description" content="Official website for the OCC-FAS dataset.">
+    <meta name="theme-color" content="#eef6fb">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <div class="site-stage">
+      <header class="site-header">
+        <a class="brand-lockup" href="#overview">
+          <span class="brand-mark">OCC</span>
+          <span class="brand-text">
+            <strong>OCC-FAS</strong>
+            <span>Occlusion-Aware Face Anti-Spoofing Dataset</span>
+          </span>
+        </a>
+
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+          Menu
+        </button>
+
+        <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+          <a class="is-active" href="#overview" aria-current="page">Overview</a>
+          <a href="#download">Access</a>
+        </nav>
+      </header>
+
+      <main class="page-main">
+        <section class="section-shell overview-shell" id="overview">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Overview</p>
+              <h1>OCC-FAS Dataset</h1>
+            </div>
+          </div>
+
+          <div class="hero-layout">
+            <article class="card intro-card">
+              <div class="concept-panel">
+                <p class="lead">
+                  OCC-FAS reframes occluded face anti-spoofing by treating benign
+                  accessories as valid live presentations while isolating malicious
+                  spoof cues in full and partial attack settings.
+                </p>
+
+                <div class="concept-list" aria-label="OCC-FAS benchmark highlights">
+                  <article class="concept-item">
+                    <span class="concept-dot" aria-hidden="true"></span>
+                    <div>
+                      <strong>Occlusion-aware labeling</strong>
+                      <p>Masks and sunglasses are modeled as real-world live conditions, not automatic spoof evidence.</p>
+                    </div>
+                  </article>
+                  <article class="concept-item">
+                    <span class="concept-dot" aria-hidden="true"></span>
+                    <div>
+                      <strong>Partial-attack coverage</strong>
+                      <p>Six scenarios span live, full spoof, spoofed occlusion, real occlusion, and hybrid live-spoof cases.</p>
+                    </div>
+                  </article>
+                  <article class="concept-item">
+                    <span class="concept-dot" aria-hidden="true"></span>
+                    <div>
+                      <strong>Spatial supervision</strong>
+                      <p>Spoof cue maps and occlusion maps provide pixel-level ground truth for localized liveness learning.</p>
+                    </div>
+                  </article>
+                </div>
+              </div>
+
+              <div class="metrics-grid">
+                <article class="metric-card">
+                  <strong>1,920</strong>
+                  <span>Samples</span>
+                </article>
+                <article class="metric-card">
+                  <strong>6</strong>
+                  <span>Scenarios</span>
+                </article>
+                <article class="metric-card">
+                  <strong>3</strong>
+                  <span>Protocols</span>
+                </article>
+                <article class="metric-card">
+                  <strong>2</strong>
+                  <span>Annotation Maps</span>
+                </article>
+              </div>
+            </article>
+
+            <article class="card media-card">
+              <div class="card-header">
+                <div>
+                  <div class="card-topline">Overview</div>
+                  <h2>Benchmark Overview</h2>
+                </div>
+              </div>
+
+              <figure class="media-view is-active side-caption-figure overview-side-figure">
+                <img class="figure-image" src="assets/figures/overview-teaser.png" alt="Fig. 1: Conventional vs. Occlusion-Aware Labeling.">
+                <figcaption class="figure-side-copy">
+                  <p class="figure-caption-text">
+                    Fig. 1: Conventional vs. Occlusion-Aware Labeling. (a) Existing
+                    FAS datasets label partially occluded genuine faces as spoof,
+                    resulting in poor alignment with real-world usage. (b) The
+                    proposed OCC-FAS adopts an occlusion-aware labeling protocol
+                    that treats common accessories and occlusions (e.g., sunglasses,
+                    masks) as live to enhance robustness and practical utility.
+                  </p>
+                </figcaption>
+              </figure>
+            </article>
+          </div>
+
+          <div class="overview-grid">
+            <article class="card scenarios-card">
+              <div class="card-topline">Examples</div>
+              <h2>Six OCC-FAS Scenarios</h2>
+              <figure class="media-view is-active side-caption-figure">
+                <img class="figure-image" src="assets/figures/overview-scenarios.png" alt="Fig. 2: Examples of live and spoof samples across the six OCC-FAS scenarios.">
+                <figcaption class="figure-side-copy">
+                  <p class="figure-caption-text">
+                    Fig. 2: Examples of live (green) and spoof (red) samples across
+                    the six OCC-FAS scenarios: (a) LF, (b) LF-RO, (c) SF, (d)
+                    SF-SO, (e) SF-RO, and (f) SF-LF-RO. The accompanying spoof
+                    cue and occlusion maps provide pixel-level binary masks
+                    indicating the locations of spoof attack and accessories,
+                    respectively.
+                  </p>
+
+                  <dl class="scenario-legend">
+                    <div><dt>LF</dt><dd>Live Face</dd></div>
+                    <div><dt>LF-RO</dt><dd>Live Face with Real Occlusion</dd></div>
+                    <div><dt>SF</dt><dd>Spoof Face</dd></div>
+                    <div><dt>SF-SO</dt><dd>Spoof Face with Spoof Occlusion</dd></div>
+                    <div><dt>SF-RO</dt><dd>Spoof Face with Real Occlusion</dd></div>
+                    <div><dt>SF-LF-RO</dt><dd>Spoof Face Mixed with Live Face under Real Occlusion</dd></div>
+                  </dl>
+                </figcaption>
+              </figure>
+            </article>
+          </div>
+
+          <article class="card table-card">
+            <div class="card-topline">Table 3</div>
+            <h2>Detailed Configuration of the Evaluation Protocols</h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Protocol</th>
+                    <th>Subset</th>
+                    <th>Scenarios</th>
+                    <th>Attack</th>
+                    <th>Light</th>
+                    <th>Camera</th>
+                    <th>Live #</th>
+                    <th>Spoof #</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td rowspan="3">I-a</td>
+                    <td>Train</td>
+                    <td>All</td>
+                    <td>Print, Replay</td>
+                    <td>Bright</td>
+                    <td>C2</td>
+                    <td>96</td>
+                    <td>264</td>
+                  </tr>
+                  <tr>
+                    <td>Dev</td>
+                    <td>All</td>
+                    <td>Print, Replay</td>
+                    <td>Dark</td>
+                    <td>C1</td>
+                    <td>32</td>
+                    <td>88</td>
+                  </tr>
+                  <tr>
+                    <td>Test</td>
+                    <td>All</td>
+                    <td>Print, Replay</td>
+                    <td>Dark</td>
+                    <td>C1</td>
+                    <td>32</td>
+                    <td>88</td>
+                  </tr>
+                  <tr>
+                    <td rowspan="3">I-b</td>
+                    <td>Train</td>
+                    <td>All</td>
+                    <td>Print, Replay</td>
+                    <td>Dark</td>
+                    <td>C1</td>
+                    <td>96</td>
+                    <td>264</td>
+                  </tr>
+                  <tr>
+                    <td>Dev</td>
+                    <td>All</td>
+                    <td>Print, Replay</td>
+                    <td>Bright</td>
+                    <td>C2</td>
+                    <td>32</td>
+                    <td>88</td>
+                  </tr>
+                  <tr>
+                    <td>Test</td>
+                    <td>All</td>
+                    <td>Print, Replay</td>
+                    <td>Bright</td>
+                    <td>C2</td>
+                    <td>32</td>
+                    <td>88</td>
+                  </tr>
+                  <tr>
+                    <td rowspan="3">II-a</td>
+                    <td>Train</td>
+                    <td>All</td>
+                    <td>Print</td>
+                    <td>Bright, Dark</td>
+                    <td>C1, C2</td>
+                    <td>96</td>
+                    <td>528</td>
+                  </tr>
+                  <tr>
+                    <td>Dev</td>
+                    <td>All</td>
+                    <td>Replay</td>
+                    <td>Bright, Dark</td>
+                    <td>C1, C2</td>
+                    <td>32</td>
+                    <td>176</td>
+                  </tr>
+                  <tr>
+                    <td>Test</td>
+                    <td>All</td>
+                    <td>Replay</td>
+                    <td>Bright, Dark</td>
+                    <td>C1, C2</td>
+                    <td>32</td>
+                    <td>176</td>
+                  </tr>
+                  <tr>
+                    <td rowspan="3">II-b</td>
+                    <td>Train</td>
+                    <td>All</td>
+                    <td>Replay</td>
+                    <td>Bright, Dark</td>
+                    <td>C1, C2</td>
+                    <td>96</td>
+                    <td>528</td>
+                  </tr>
+                  <tr>
+                    <td>Dev</td>
+                    <td>All</td>
+                    <td>Print</td>
+                    <td>Bright, Dark</td>
+                    <td>C1, C2</td>
+                    <td>32</td>
+                    <td>176</td>
+                  </tr>
+                  <tr>
+                    <td>Test</td>
+                    <td>All</td>
+                    <td>Print</td>
+                    <td>Bright, Dark</td>
+                    <td>C1, C2</td>
+                    <td>32</td>
+                    <td>176</td>
+                  </tr>
+                  <tr>
+                    <td rowspan="3">III-a</td>
+                    <td>Train</td>
+                    <td>LF, LF-RO, SF, SF-SO</td>
+                    <td>Print, Replay</td>
+                    <td>Bright, Dark</td>
+                    <td>C1, C2</td>
+                    <td>96</td>
+                    <td>480</td>
+                  </tr>
+                  <tr>
+                    <td>Dev</td>
+                    <td>All</td>
+                    <td>Print, Replay</td>
+                    <td>Bright, Dark</td>
+                    <td>C1, C2</td>
+                    <td>32</td>
+                    <td>352</td>
+                  </tr>
+                  <tr>
+                    <td>Test</td>
+                    <td>All</td>
+                    <td>Print, Replay</td>
+                    <td>Bright, Dark</td>
+                    <td>C1, C2</td>
+                    <td>32</td>
+                    <td>352</td>
+                  </tr>
+                  <tr>
+                    <td rowspan="3">III-b</td>
+                    <td>Train</td>
+                    <td>LF, LF-RO, SF, SF-SO</td>
+                    <td>Replay</td>
+                    <td>Bright</td>
+                    <td>C2</td>
+                    <td>96</td>
+                    <td>60</td>
+                  </tr>
+                  <tr>
+                    <td>Dev</td>
+                    <td>All</td>
+                    <td>Print</td>
+                    <td>Dark</td>
+                    <td>C1</td>
+                    <td>32</td>
+                    <td>44</td>
+                  </tr>
+                  <tr>
+                    <td>Test</td>
+                    <td>All</td>
+                    <td>Print</td>
+                    <td>Dark</td>
+                    <td>C1</td>
+                    <td>32</td>
+                    <td>44</td>
+                  </tr>
+                  <tr>
+                    <td rowspan="3">III-c</td>
+                    <td>Train</td>
+                    <td>LF, LF-RO, SF, SF-SO</td>
+                    <td>Replay</td>
+                    <td>Dark</td>
+                    <td>C1</td>
+                    <td>96</td>
+                    <td>60</td>
+                  </tr>
+                  <tr>
+                    <td>Dev</td>
+                    <td>All</td>
+                    <td>Print</td>
+                    <td>Bright</td>
+                    <td>C2</td>
+                    <td>32</td>
+                    <td>44</td>
+                  </tr>
+                  <tr>
+                    <td>Test</td>
+                    <td>All</td>
+                    <td>Print</td>
+                    <td>Bright</td>
+                    <td>C2</td>
+                    <td>32</td>
+                    <td>44</td>
+                  </tr>
+                  <tr>
+                    <td rowspan="3">III-d</td>
+                    <td>Train</td>
+                    <td>LF, LF-RO, SF, SF-SO</td>
+                    <td>Print</td>
+                    <td>Bright</td>
+                    <td>C1</td>
+                    <td>96</td>
+                    <td>60</td>
+                  </tr>
+                  <tr>
+                    <td>Dev</td>
+                    <td>All</td>
+                    <td>Replay</td>
+                    <td>Dark</td>
+                    <td>C1</td>
+                    <td>32</td>
+                    <td>44</td>
+                  </tr>
+                  <tr>
+                    <td>Test</td>
+                    <td>All</td>
+                    <td>Replay</td>
+                    <td>Dark</td>
+                    <td>C1</td>
+                    <td>32</td>
+                    <td>44</td>
+                  </tr>
+                  <tr>
+                    <td rowspan="3">III-e</td>
+                    <td>Train</td>
+                    <td>LF, LF-RO, SF, SF-SO</td>
+                    <td>Print</td>
+                    <td>Dark</td>
+                    <td>C2</td>
+                    <td>96</td>
+                    <td>60</td>
+                  </tr>
+                  <tr>
+                    <td>Dev</td>
+                    <td>All</td>
+                    <td>Replay</td>
+                    <td>Bright</td>
+                    <td>C1</td>
+                    <td>32</td>
+                    <td>44</td>
+                  </tr>
+                  <tr>
+                    <td>Test</td>
+                    <td>All</td>
+                    <td>Replay</td>
+                    <td>Bright</td>
+                    <td>C1</td>
+                    <td>32</td>
+                    <td>44</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <p class="table-note">
+              <strong>C1 / C2:</strong> Samsung Galaxy A55 5G and iPhone 15 Pro Max.
+              <strong>Bright / Dark:</strong> bright-light and dark-light capture conditions.
+              <strong>Print / Replay:</strong> spoof attacks created by printed media or replayed screen media.
+            </p>
+          </article>
+
+          <article class="card results-table-card">
+            <div class="card-topline">Table 5</div>
+            <h2>Experimental Comparisons on OCC-FAS</h2>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th rowspan="2">Method</th>
+                    <th colspan="2">I</th>
+                    <th colspan="2">II</th>
+                    <th colspan="2">III-a</th>
+                    <th colspan="2">III-b/c/d/e</th>
+                  </tr>
+                  <tr>
+                    <th>HTER</th>
+                    <th>AUC</th>
+                    <th>HTER</th>
+                    <th>AUC</th>
+                    <th>HTER</th>
+                    <th>AUC</th>
+                    <th>HTER</th>
+                    <th>AUC</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>OC-SCMNet [9] (CVPR&apos;24)</td>
+                    <td>35.73 &plusmn; 6.53</td>
+                    <td>63.82 &plusmn; 9.04</td>
+                    <td>30.47 &plusmn; 2.51</td>
+                    <td>68.52 &plusmn; 3.79</td>
+                    <td>31.96</td>
+                    <td>71.27</td>
+                    <td>33.66 &plusmn; 4.96</td>
+                    <td>65.04 &plusmn; 6.39</td>
+                  </tr>
+                  <tr>
+                    <td>SLIP [11] (AAAI&apos;25)</td>
+                    <td>32.67 &plusmn; 12.66</td>
+                    <td>70.88 &plusmn; 17.88</td>
+                    <td>32.32 &plusmn; 8.14</td>
+                    <td>67.76 &plusmn; 14.44</td>
+                    <td>34.94</td>
+                    <td>64.56</td>
+                    <td>35.83 &plusmn; 5.95</td>
+                    <td>65.23 &plusmn; 9.48</td>
+                  </tr>
+                  <tr>
+                    <td>SA-FAS [24] (CVPR&apos;23)</td>
+                    <td>15.77 &plusmn; 3.82</td>
+                    <td>93.83 &plusmn; 1.51</td>
+                    <td>20.53 &plusmn; 11.35</td>
+                    <td>86.94 &plusmn; 11.34</td>
+                    <td>28.12</td>
+                    <td>80.37</td>
+                    <td>35.19 &plusmn; 10.61</td>
+                    <td>69.78 &plusmn; 14.47</td>
+                  </tr>
+                  <tr>
+                    <td>LDCformer [10] (ICIP&apos;23)</td>
+                    <td>16.05 &plusmn; 0.61</td>
+                    <td>90.58 &plusmn; 0.73</td>
+                    <td>14.13 &plusmn; 5.73</td>
+                    <td>89.81 &plusmn; 5.37</td>
+                    <td>16.19</td>
+                    <td>89.80</td>
+                    <td>31.68 &plusmn; 7.16</td>
+                    <td>68.57 &plusmn; 10.77</td>
+                  </tr>
+                  <tr>
+                    <td>GAC-FAS [14] (CVPR&apos;24)</td>
+                    <td>15.48 &plusmn; 8.03</td>
+                    <td>92.97 &plusmn; 5.28</td>
+                    <td>17.40 &plusmn; 10.75</td>
+                    <td>89.28 &plusmn; 8.41</td>
+                    <td>21.45</td>
+                    <td>89.69</td>
+                    <td>32.88 &plusmn; 8.72</td>
+                    <td>74.24 &plusmn; 13.38</td>
+                  </tr>
+                  <tr>
+                    <td>CDformer [12] (Inf. Sci.&apos;25)</td>
+                    <td>16.62 &plusmn; 6.23</td>
+                    <td>89.58 &plusmn; 5.00</td>
+                    <td>13.07 &plusmn; 4.82</td>
+                    <td>91.68 &plusmn; 4.73</td>
+                    <td>17.05</td>
+                    <td>89.85</td>
+                    <td>33.10 &plusmn; 4.56</td>
+                    <td>68.45 &plusmn; 8.14</td>
+                  </tr>
+                  <tr>
+                    <td>MVP-FAS [26] (ICCV&apos;25)</td>
+                    <td>12.95 &plusmn; 1.35</td>
+                    <td>93.73 &plusmn; 1.93</td>
+                    <td>12.97 &plusmn; 3.27</td>
+                    <td>91.96 &plusmn; 3.86</td>
+                    <td>14.78</td>
+                    <td>89.72</td>
+                    <td>30.70 &plusmn; 8.14</td>
+                    <td>74.46 &plusmn; 11.53</td>
+                  </tr>
+                  <tr class="highlight-row">
+                    <td>Ours</td>
+                    <td>12.50 &plusmn; 4.62</td>
+                    <td>94.39 &plusmn; 4.21</td>
+                    <td>12.50 &plusmn; 3.82</td>
+                    <td>92.56 &plusmn; 5.44</td>
+                    <td>13.78</td>
+                    <td>91.93</td>
+                    <td>29.90 &plusmn; 7.56</td>
+                    <td>74.68 &plusmn; 13.92</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="table-subsection">
+              <div class="card-topline">Compared Methods</div>
+              <h3>References in Table 5</h3>
+              <ul class="methods-list">
+                <li><strong>[9] OC-SCMNet:</strong> One-class face anti-spoofing via spoof cue map-guided feature learning. CVPR 2024.</li>
+                <li><strong>[10] LDCformer:</strong> Incorporating learnable descriptive convolution to vision transformer for face anti-spoofing. ICIP 2023.</li>
+                <li><strong>[11] SLIP:</strong> Spoof-aware one-class face anti-spoofing with language image pretraining. AAAI 2025.</li>
+                <li><strong>[12] CDformer:</strong> Channel difference transformer for face anti-spoofing. Information Sciences 2025.</li>
+                <li><strong>[14] GAC-FAS:</strong> Gradient alignment for cross-domain face anti-spoofing. CVPR 2024.</li>
+                <li><strong>[24] SA-FAS:</strong> Rethinking domain generalization for face anti-spoofing: separability and alignment. CVPR 2023.</li>
+                <li><strong>[26] MVP-FAS:</strong> Multi-view slot attention using paraphrased texts for face anti-spoofing. ICCV 2025.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="card citation-card">
+            <div class="card-topline">Reference</div>
+            <h2>Citation</h2>
+            <p>
+              OCC-FAS: A New Benchmark and Feature-Disentangled Mixture-of-Experts
+              Framework for Occlusion-Aware Face Anti-Spoofing
+            </p>
+            <h3>BibTeX</h3>
+            <pre id="citation-text" class="citation-block">@inproceedings{chen2026occfas,
+  title     = {OCC-FAS: A New Benchmark and Feature-Disentangled Mixture-of-Experts Framework for Occlusion-Aware Face Anti-Spoofing},
+  author    = {Chen, Jun-Ren and Su, Cheng-Hsiang and Ou, Yi-Chen and Lin, Yi-Ting and Chien, Kai-Heng and Huang, Pei-Kai and Hsu, Chiou-Ting},
+  booktitle = {International Conference on Pattern Recognition (ICPR)},
+  year      = {2026}
+}</pre>
+          </article>
+        </section>
+
+        <section class="section-shell download-shell" id="download" hidden>
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">Access</p>
+              <h1>Dataset Access</h1>
+            </div>
+          </div>
+
+          <div class="download-layout">
+            <article class="card intro-card">
+              <p class="lead">
+                The OCC-FAS dataset is available upon request for research use.
+                Access is provided after the submitted request materials are reviewed.
+              </p>
+            </article>
+
+            <article class="card steps-card">
+              <div class="card-topline">Request Process</div>
+              <h2>How to Apply</h2>
+              <div class="step-list">
+                <article class="step-row">
+                  <span>01</span>
+                  <div>
+                    <h3>Prepare the signed request form</h3>
+                    <p>Complete the official request document and sign it before submission.</p>
+                  </div>
+                </article>
+                <article class="step-row">
+                  <span>02</span>
+                  <div>
+                    <h3>Submit from an institutional email</h3>
+                    <p>Send the signed request form using the submission address provided in the request materials panel.</p>
+                  </div>
+                </article>
+                <article class="step-row">
+                  <span>03</span>
+                  <div>
+                    <h3>Wait for review</h3>
+                    <p>Approved requests will receive the follow-up dataset access information.</p>
+                  </div>
+                </article>
+              </div>
+            </article>
+
+            <article class="card download-panel-card">
+              <h2>Request Materials</h2>
+              <div class="download-materials">
+                <section class="download-detail download-detail-primary">
+                  <strong>Request Form (EULA PDF)</strong>
+                  <p>Download the official PDF, complete the required information, and sign it before submission.</p>
+                  <a class="primary-action download-action" href="EndUserLicenseAgreement_OCC-FAS.pdf">Download EULA PDF</a>
+                </section>
+
+                <section class="download-detail">
+                  <strong>Submission Email</strong>
+                  <p>Use this address to send the signed request form.</p>
+                  <p><a href="mailto:alwayswithme@fjnu.edu.cn">alwayswithme@fjnu.edu.cn</a></p>
+                </section>
+              </div>
+            </article>
+          </div>
+        </section>
+      </main>
+
+      <footer class="site-footer">
+        <p>Copyright &copy; 2026 NTHU-CS MP Lab. All rights reserved.</p>
+      </footer>
+    </div>
+  </body>
+</html>
