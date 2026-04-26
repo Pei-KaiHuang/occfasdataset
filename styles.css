@@ -17,12 +17,14 @@
   --section-pad: 28px;
   --card-pad: 22px;
   --gap-page: 24px;
-  --gap-section: 20px;
+  --gap-section: 28px;
   --gap-card: 16px;
   --gap-item: 14px;
   --type-body: 1rem;
-  --type-small: 0.92rem;
+  --type-small: 0.95rem;
+  --type-meta: 0.9rem;
   --type-lead: 1.06rem;
+  --type-stat: 1.55rem;
   --type-h1: clamp(2.5rem, 4vw, 3.5rem);
   --type-h2: 1.5rem;
   --type-h3: 1.05rem;
@@ -131,7 +133,7 @@ pre {
   height: 48px;
   border-radius: 16px;
   color: #fff;
-  font-size: 0.9rem;
+  font-size: var(--type-meta);
   font-weight: 800;
   letter-spacing: 0.08em;
   background: linear-gradient(135deg, #1484ff 0%, #0866ff 58%, #0050d8 100%);
@@ -152,7 +154,7 @@ pre {
 
 .brand-text span {
   color: var(--muted);
-  font-size: 0.95rem;
+  font-size: var(--type-small);
   line-height: 1.25;
 }
 
@@ -253,6 +255,7 @@ pre {
 .section-shell {
   width: 100%;
   min-width: 0;
+  scroll-margin-top: calc(var(--header-space) + 18px);
   display: grid;
   gap: var(--gap-section);
   padding: var(--section-pad);
@@ -271,7 +274,6 @@ pre {
 .citation-block,
 .figure-caption-text,
 .scenario-legend,
-.scenario-legend div,
 .figure-image {
   border: 1px solid rgba(255, 255, 255, 0.7);
   background: linear-gradient(145deg, var(--glass-strong) 0%, var(--glass-soft) 100%);
@@ -295,38 +297,87 @@ pre {
   gap: var(--gap-card);
 }
 
-.eyebrow,
-.card-topline {
-  margin: 0 0 10px;
-  color: var(--blue);
-  font-size: 0.78rem;
-  font-weight: 800;
-  line-height: 1.2;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+.section-heading {
+  margin-bottom: 6px;
 }
 
 h1,
 h2,
 h3 {
-  margin: 0 0 12px;
+  margin: 0 0 16px;
   color: var(--ink);
   letter-spacing: 0;
 }
 
 h1 {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 18px;
   font-size: var(--type-h1);
   line-height: 1.04;
+  font-weight: 900;
+  text-shadow: 0 12px 28px rgba(8, 44, 96, 0.08);
+}
+
+h1::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: min(190px, 50%);
+  height: 7px;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, var(--blue) 0%, #24b6ff 48%, #00a884 100%);
+  box-shadow:
+    0 12px 26px rgba(8, 102, 255, 0.2),
+    0 0 0 4px rgba(8, 102, 255, 0.06);
 }
 
 h2 {
   font-size: var(--type-h2);
   line-height: 1.18;
+  font-weight: 900;
 }
 
 h3 {
   font-size: var(--type-h3);
   line-height: 1.3;
+  font-weight: 850;
+}
+
+.card > h2,
+.card-header h2,
+.table-subsection h3 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.card > h2::before,
+.card-header h2::before,
+.table-subsection h3::before {
+  content: "";
+  flex: 0 0 auto;
+  width: 9px;
+  height: 1.35em;
+  border-radius: 999px;
+  background: linear-gradient(180deg, var(--blue), #00a884);
+  box-shadow:
+    0 10px 20px rgba(8, 102, 255, 0.18),
+    0 0 0 4px rgba(8, 102, 255, 0.08);
+}
+
+.card > h2::after,
+.card-header h2::after,
+.table-subsection h3::after {
+  content: "";
+  flex: 1 1 auto;
+  height: 1px;
+  min-width: 32px;
+  background: linear-gradient(90deg, rgba(8, 102, 255, 0.24), transparent);
 }
 
 .lead,
@@ -458,7 +509,7 @@ td {
   grid-column: 2;
   margin: 0;
   color: #fff;
-  font-size: 1.68rem;
+  font-size: var(--type-stat);
   line-height: 1;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.34);
 }
@@ -466,7 +517,7 @@ td {
 .metric-card .metric-label {
   grid-column: 2;
   color: #fff;
-  font-size: 0.9rem;
+  font-size: var(--type-small);
   font-weight: 900;
   line-height: 1.12;
   letter-spacing: 0;
@@ -477,7 +528,7 @@ td {
   grid-column: 2;
   margin-top: 4px;
   color: rgba(255, 255, 255, 0.82);
-  font-size: 0.68rem;
+  font-size: var(--type-meta);
   font-weight: 700;
   line-height: 1.28;
   overflow-wrap: anywhere;
@@ -596,7 +647,7 @@ td {
 .concept-item p {
   margin: 0;
   color: #60748a;
-  font-size: 0.96rem;
+  font-size: var(--type-body);
   line-height: 1.62;
   overflow-wrap: anywhere;
 }
@@ -637,54 +688,34 @@ td {
   position: relative;
   min-height: 100%;
   margin: 0;
-  padding: 48px 24px 24px;
+  padding: 24px;
   border-radius: var(--item-radius);
   color: var(--muted);
-  font-size: var(--type-small);
-  line-height: 1.65;
-}
-
-.figure-caption-text::before {
-  content: "Caption";
-  position: absolute;
-  top: 18px;
-  left: 24px;
-  color: var(--blue);
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  font-size: var(--type-body);
+  line-height: 1.72;
 }
 
 .scenario-legend {
-  position: relative;
-  display: grid;
-  gap: 8px;
-  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 10px;
+  height: auto;
   margin: 0;
-  padding: 48px 24px 20px;
-  border-radius: var(--card-radius);
-}
-
-.scenario-legend::before {
-  content: "Scenario Key";
-  position: absolute;
-  top: 18px;
-  left: 24px;
-  color: #6b7b8c;
-  font-size: 0.72rem;
-  font-weight: 800;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
+  padding: 16px;
+  border-radius: var(--item-radius);
 }
 
 .scenario-legend div {
-  display: grid;
-  grid-template-columns: 120px minmax(0, 1fr);
-  gap: 10px;
+  display: inline-flex;
+  flex: 1 1 220px;
+  gap: 8px;
   align-items: center;
-  padding: 12px 16px;
-  border-radius: 14px;
+  min-width: 0;
+  padding: 8px 10px;
+  border: 1px solid rgba(8, 102, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.58);
 }
 
 .scenario-legend dt,
@@ -693,12 +724,22 @@ td {
 }
 
 .scenario-legend dt {
+  display: inline-grid;
+  place-items: center;
+  min-width: 62px;
+  padding: 3px 8px;
+  border-radius: 999px;
   color: #22384f;
+  font-size: var(--type-meta);
   font-weight: 800;
+  line-height: 1.2;
+  background: rgba(8, 102, 255, 0.09);
 }
 
 .scenario-legend dd {
   color: var(--muted);
+  font-size: var(--type-small);
+  line-height: 1.35;
 }
 
 .table-card,
@@ -728,14 +769,14 @@ td {
 
 th {
   color: #22384f;
-  font-size: 0.82rem;
+  font-size: var(--type-small);
   font-weight: 800;
   line-height: 1.35;
   background: rgba(232, 242, 255, 0.78);
 }
 
 td {
-  font-size: 0.9rem;
+  font-size: var(--type-small);
   line-height: 1.45;
 }
 
@@ -776,7 +817,7 @@ tbody tr:nth-child(even) td,
   overflow-x: auto;
   border-radius: var(--item-radius);
   color: #304256;
-  font-size: 0.84rem;
+  font-size: var(--type-small);
   line-height: 1.45;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
@@ -927,7 +968,7 @@ tbody tr:nth-child(even) td,
 .site-footer p {
   margin: 0;
   color: var(--muted);
-  font-size: 0.92rem;
+  font-size: var(--type-small);
   line-height: 1.2;
 }
 
@@ -943,7 +984,7 @@ tbody tr:nth-child(even) td,
   border: 1px solid rgba(8, 102, 255, 0.18);
   border-radius: 999px;
   color: #fff;
-  font-size: 1.25rem;
+  font-size: var(--type-h3);
   font-weight: 800;
   background: linear-gradient(135deg, #1484ff 0%, #0866ff 58%, #0050d8 100%);
   box-shadow: 0 16px 32px rgba(8, 102, 255, 0.24);
@@ -1041,15 +1082,15 @@ tbody tr:nth-child(even) td,
     width: 42px;
     height: 42px;
     border-radius: 13px;
-    font-size: 0.78rem;
+    font-size: var(--type-meta);
   }
 
   .brand-text strong {
-    font-size: 1.08rem;
+    font-size: var(--type-h3);
   }
 
   .brand-text span {
-    font-size: 0.82rem;
+    font-size: var(--type-small);
   }
 
   .menu-toggle {
@@ -1104,8 +1145,10 @@ tbody tr:nth-child(even) td,
     --card-radius: 18px;
     --item-radius: 16px;
     --type-body: 0.95rem;
-    --type-small: 0.86rem;
-    --type-lead: 0.96rem;
+    --type-small: 0.95rem;
+    --type-meta: 0.9rem;
+    --type-lead: 1rem;
+    --type-stat: 1.5rem;
     --type-h1: 2.1rem;
     --type-h2: 1.26rem;
     --type-h3: 1rem;
@@ -1139,15 +1182,15 @@ tbody tr:nth-child(even) td,
     width: 42px;
     height: 42px;
     border-radius: 13px;
-    font-size: 0.78rem;
+    font-size: var(--type-meta);
   }
 
   .brand-text strong {
-    font-size: 1.08rem;
+    font-size: var(--type-h3);
   }
 
   .brand-text span {
-    font-size: 0.82rem;
+    font-size: var(--type-small);
   }
 
   .menu-toggle {
@@ -1219,7 +1262,7 @@ tbody tr:nth-child(even) td,
   }
 
   .concept-item p {
-    font-size: 0.9rem;
+    font-size: var(--type-body);
     line-height: 1.5;
   }
 
@@ -1240,16 +1283,16 @@ tbody tr:nth-child(even) td,
   }
 
   .metric-card strong {
-    font-size: 1.58rem;
+    font-size: var(--type-stat);
   }
 
   .metric-card .metric-label {
-    font-size: 0.88rem;
+    font-size: var(--type-small);
   }
 
   .metric-card small {
     margin-top: 3px;
-    font-size: 0.66rem;
+    font-size: var(--type-meta);
   }
 
   .metric-icon {
@@ -1266,36 +1309,21 @@ tbody tr:nth-child(even) td,
   }
 
   .figure-caption-text {
-    padding: 40px 16px 16px;
-  }
-
-  .figure-caption-text::before,
-  .scenario-legend::before {
-    top: 14px;
-    left: 16px;
+    padding: 16px;
   }
 
   .scenario-legend {
-    padding: 40px 16px 12px;
+    padding: 16px;
   }
 
   .scenario-legend div {
-    grid-template-columns: 92px minmax(0, 1fr);
-    gap: 8px;
+    flex-basis: 220px;
     padding: 10px 12px;
   }
 
   th,
   td {
     padding: 9px 8px;
-  }
-
-  th {
-    font-size: 0.78rem;
-  }
-
-  td {
-    font-size: 0.84rem;
   }
 
   .download-action,
@@ -1317,7 +1345,7 @@ tbody tr:nth-child(even) td,
     width: 42px;
     height: 42px;
     border-radius: 12px;
-    font-size: 0.85rem;
+    font-size: var(--type-meta);
   }
 }
 
@@ -1350,7 +1378,7 @@ tbody tr:nth-child(even) td,
     width: 38px;
     height: 38px;
     border-radius: 12px;
-    font-size: 0.72rem;
+    font-size: var(--type-meta);
   }
 
   .brand-text span {
@@ -1366,11 +1394,11 @@ tbody tr:nth-child(even) td,
   }
 
   .metric-card strong {
-    font-size: 1.34rem;
+    font-size: var(--type-stat);
   }
 
   .metric-card .metric-label {
-    font-size: 0.8rem;
+    font-size: var(--type-small);
   }
 
   .metric-card small {
@@ -1384,8 +1412,9 @@ tbody tr:nth-child(even) td,
   }
 
   .scenario-legend div {
-    grid-template-columns: 1fr;
-    gap: 2px;
+    flex-basis: 100%;
+    align-items: flex-start;
+    border-radius: 14px;
   }
 }
 
@@ -1405,8 +1434,10 @@ tbody tr:nth-child(even) td,
     --type-h2: 1.28rem;
     --type-h3: 1.05rem;
     --type-body: 1rem;
-    --type-small: 0.9rem;
+    --type-small: 0.95rem;
+    --type-meta: 0.9rem;
     --type-lead: 1.04rem;
+    --type-stat: 1.5rem;
   }
 
   html,
@@ -1437,11 +1468,11 @@ tbody tr:nth-child(even) td,
     width: 38px;
     height: 38px;
     border-radius: 12px;
-    font-size: 0.72rem;
+    font-size: var(--type-meta);
   }
 
   .brand-text strong {
-    font-size: 1rem;
+    font-size: var(--type-h3);
     line-height: 1.1;
   }
 
@@ -1555,11 +1586,11 @@ tbody tr:nth-child(even) td,
   }
 
   .concept-item strong {
-    font-size: 1rem;
+    font-size: var(--type-body);
   }
 
   .concept-item p {
-    font-size: 0.96rem;
+    font-size: var(--type-body);
     line-height: 1.58;
   }
 
@@ -1577,11 +1608,11 @@ tbody tr:nth-child(even) td,
   }
 
   .metric-card strong {
-    font-size: 1.52rem;
+    font-size: var(--type-stat);
   }
 
   .metric-card .metric-label {
-    font-size: 0.9rem;
+    font-size: var(--type-small);
     line-height: 1.32;
   }
 
@@ -1603,22 +1634,17 @@ tbody tr:nth-child(even) td,
   }
 
   .figure-caption-text {
-    padding: 40px 16px 16px;
-  }
-
-  .figure-caption-text::before,
-  .scenario-legend::before {
-    top: 14px;
-    left: 16px;
+    padding: 16px;
   }
 
   .scenario-legend {
-    padding: 40px 16px 14px;
+    padding: 16px;
   }
 
   .scenario-legend div {
-    grid-template-columns: 1fr;
-    gap: 2px;
+    flex-basis: 100%;
+    align-items: flex-start;
+    border-radius: 14px;
     padding: 12px;
   }
 
@@ -1633,7 +1659,6 @@ tbody tr:nth-child(even) td,
   th,
   td {
     padding: 8px 7px;
-    font-size: 0.86rem;
   }
 
   .download-layout,
@@ -1670,7 +1695,7 @@ tbody tr:nth-child(even) td,
     width: 38px;
     height: 38px;
     border-radius: 12px;
-    font-size: 0.8rem;
+    font-size: var(--type-meta);
   }
 
   .back-to-top {
@@ -1678,18 +1703,17 @@ tbody tr:nth-child(even) td,
     bottom: 16px;
     width: 44px;
     height: 44px;
-    font-size: 1.1rem;
+    font-size: var(--type-h3);
   }
 
   .step-row h3 {
-    font-size: 1rem;
+    font-size: var(--type-h3);
   }
 
   .step-row p,
   .download-detail p,
   .citation-block,
-  .figure-caption-text,
   .scenario-legend dd {
-    font-size: 0.94rem;
+    font-size: var(--type-small);
   }
 }

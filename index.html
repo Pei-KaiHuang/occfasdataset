@@ -35,7 +35,6 @@
         <section class="section-shell overview-shell" id="overview">
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Overview</p>
               <h1>OCC-FAS Dataset</h1>
             </div>
           </div>
@@ -79,7 +78,7 @@
                   <span class="metric-icon metric-icon-samples" aria-hidden="true"></span>
                   <strong>1,920</strong>
                   <span class="metric-label">Samples</span>
-                  <small>Live and spoof images</small>
+                  <small>160 live / 1,760 spoof</small>
                 </article>
                 <article class="metric-card">
                   <span class="metric-icon metric-icon-scenarios" aria-hidden="true"></span>
@@ -91,7 +90,7 @@
                   <span class="metric-icon metric-icon-protocols" aria-hidden="true"></span>
                   <strong>3</strong>
                   <span class="metric-label">Protocols</span>
-                  <small>Evaluation settings</small>
+                  <small>9 sub-protocols</small>
                 </article>
                 <article class="metric-card">
                   <span class="metric-icon metric-icon-maps" aria-hidden="true"></span>
@@ -105,8 +104,7 @@
             <article class="card media-card">
               <div class="card-header">
                 <div>
-                  <div class="card-topline">Overview</div>
-                  <h2>Benchmark Overview</h2>
+                  <h2>Occlusion-Aware Labeling</h2>
                 </div>
               </div>
 
@@ -114,12 +112,13 @@
                 <img class="figure-image" src="assets/figures/overview-teaser.png" alt="Fig. 1: Conventional vs. Occlusion-Aware Labeling.">
                 <figcaption class="figure-side-copy">
                   <p class="figure-caption-text">
-                    Fig. 1: Conventional vs. Occlusion-Aware Labeling. (a) Existing
-                    FAS datasets label partially occluded genuine faces as spoof,
-                    resulting in poor alignment with real-world usage. (b) The
-                    proposed OCC-FAS adopts an occlusion-aware labeling protocol
-                    that treats common accessories and occlusions (e.g., sunglasses,
-                    masks) as live to enhance robustness and practical utility.
+                    The left panel shows the conventional rule: any unusual occlusion
+                    on a genuine face, such as tattoo-like marks or paper glasses, is
+                    treated as spoof. The right panel shows the OCC-FAS rule: benign
+                    real-world accessories such as sunglasses and masks remain live,
+                    while malicious partial attacks are still labeled spoof. The check
+                    and cross marks indicate how the same visible obstruction should
+                    be interpreted depending on whether it is benign or attack-driven.
                   </p>
                 </figcaption>
               </figure>
@@ -128,18 +127,19 @@
 
           <div class="overview-grid">
             <article class="card scenarios-card">
-              <div class="card-topline">Examples</div>
               <h2>Six OCC-FAS Scenarios</h2>
               <figure class="media-view is-active side-caption-figure">
                 <img class="figure-image" src="assets/figures/overview-scenarios.png" alt="Fig. 2: Examples of live and spoof samples across the six OCC-FAS scenarios.">
                 <figcaption class="figure-side-copy">
                   <p class="figure-caption-text">
-                    Fig. 2: Examples of live (green) and spoof (red) samples across
-                    the six OCC-FAS scenarios: (a) LF, (b) LF-RO, (c) SF, (d)
-                    SF-SO, (e) SF-RO, and (f) SF-LF-RO. The accompanying spoof
-                    cue and occlusion maps provide pixel-level binary masks
-                    indicating the locations of spoof attack and accessories,
-                    respectively.
+                    Columns (a)-(f) correspond to LF, LF-RO, SF, SF-SO, SF-RO,
+                    and SF-LF-RO. Green boxes denote live samples and red boxes
+                    denote spoof samples. For each identity, the two black-and-white
+                    rows underneath separate the annotation targets: spoof cue maps
+                    mark attack regions, while occlusion maps mark benign accessories
+                    such as masks or sunglasses. This layout shows why OCC-FAS tests
+                    both image-level live/spoof decisions and localized reasoning
+                    about where spoof or occlusion evidence appears.
                   </p>
 
                   <dl class="scenario-legend">
@@ -156,7 +156,6 @@
           </div>
 
           <article class="card table-card">
-            <div class="card-topline">Table 3</div>
             <h2>Detailed Configuration of the Evaluation Protocols</h2>
             <div class="table-wrap">
               <table>
@@ -436,7 +435,6 @@
           </article>
 
           <article class="card results-table-card">
-            <div class="card-topline">Table 5</div>
             <h2>Experimental Comparisons on OCC-FAS</h2>
             <div class="table-wrap">
               <table>
@@ -553,7 +551,6 @@
             </div>
 
             <div class="table-subsection">
-              <div class="card-topline">Compared Methods</div>
               <h3>References in Table 5</h3>
               <ul class="methods-list">
                 <li><strong>[9] OC-SCMNet:</strong> One-class face anti-spoofing via spoof cue map-guided feature learning. CVPR 2024.</li>
@@ -568,7 +565,6 @@
           </article>
 
           <article class="card citation-card">
-            <div class="card-topline">Reference</div>
             <h2>Citation</h2>
             <p>
               OCC-FAS: A New Benchmark and Feature-Disentangled Mixture-of-Experts
@@ -587,7 +583,6 @@
         <section class="section-shell download-shell" id="download" hidden>
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Access</p>
               <h1>Dataset Access</h1>
             </div>
           </div>
@@ -604,7 +599,6 @@
             </article>
 
             <article class="card steps-card">
-              <div class="card-topline">Request Process</div>
               <h2>How to Apply</h2>
               <div class="step-list">
                 <article class="step-row">
@@ -654,15 +648,14 @@
         <section class="section-shell code-shell" id="code" hidden>
           <div class="section-heading">
             <div>
-              <p class="eyebrow">Code</p>
-              <h1>Code Repository</h1>
+              <h1>FD-MoE Code Repository</h1>
             </div>
           </div>
 
           <div class="code-layout">
             <article class="card intro-card code-card">
               <p class="lead">
-                The implementation resources for OCC-FAS are available through the public GitHub repository.
+                The implementation resources for the FD-MoE framework proposed with OCC-FAS are available through the public GitHub repository.
               </p>
               <a class="primary-action code-action" href="https://github.com/Pei-KaiHuang/FD-MoE" target="_blank" rel="noopener">View Code on GitHub</a>
             </article>
